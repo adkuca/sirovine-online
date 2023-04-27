@@ -1,0 +1,41 @@
+CREATE OR REPLACE VIEW v_t_primke_zag (
+   id,
+   id_dobavljaci,
+   id_mt,
+   broj,
+   datum_isporuke,
+   datum_zaprimanja,
+   opis,
+   opis_duzi,
+   oznaka_potvrde,
+   user_dodavanja,
+   datum_dodavanja,
+   user_izmjene,
+   datum_izmjene,
+   sifra_dobavljaci,
+   naziv_dobavljaci,
+   sifra_mt,
+   naziv_mt)
+AS
+SELECT pz.id,
+       pz.id_dobavljaci,
+       pz.id_mt,
+       pz.broj,
+       pz.datum_isporuke,
+       pz.datum_zaprimanja,
+       pz.opis,
+       pz.opis_duzi,
+       pz.oznaka_potvrde,
+       pz.user_dodavanja,
+       pz.datum_dodavanja,
+       pz.user_izmjene,
+       pz.datum_izmjene,
+       dob.sifra,
+       dob.naziv,
+       mt.sifra,
+       mt.naziv
+  FROM t_primke_zag pz,
+       m_dobavljaci dob,
+       m_mt         mt
+ WHERE (pz.id_dobavljaci = dob.id AND pz.id_mt = mt.id)
+/
